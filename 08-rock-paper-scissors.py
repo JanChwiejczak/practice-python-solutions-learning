@@ -14,28 +14,29 @@ def play_game():
     choice = ''
     while choice not in ['y','yes','n','no']:
         print('Would you like to play Rock-Paper-Scissors?')
-        choice = raw_input('(Y)es, (N)o: ').lower()      
+        choice = input('(Y)es, (N)o: ').lower()      
     if choice in ['y', 'yes']:
-        rock_paper_scissors()
+        rps = RockPaperScissorsGame()
+        rps.play()
     else:
         print('Bye!')
         
-
-def rock_paper_scissors():
+class RockPaperScissorsGame:
     possible_choices = ['r', 'p', 's']
-    p1_choice = ''
-    while p1_choice not in possible_choices:
-        p1_choice = raw_input('Player1 please choose (R)ock, (P)aper or (S)cissors: ').lower() 
-    os.system('cls')    
-    p2_choice = ''
-    while p2_choice not in possible_choices:
-        p2_choice = raw_input('Player2 please choose (R)ock, (P)aper or (S)cissors: ') .lower()
-    os.system('cls')
     outcomes = {'r': {'r': 'Draw', 'p': 'Lose', 's': 'Win'},
                 'p': {'r': 'Win', 'p': 'Draw', 's': 'Lose'},
                 's': {'r': 'Lose', 'p': 'Win', 's': 'Draw'}}
-    p1_outcome = outcomes[p1_choice][p2_choice]
-    print('Player 1 {}'.format(p1_outcome)
-    
+
+    def ask_for_player_choice(self, choice=None):
+        os.system('cls')
+        while choice not in self.possible_choices:
+            choice = input('Please choose (R)ock, (P)aper or (S)cissors: ').lower()
+        return choice    
+
+    def play(self):
+        self.p1_choice = self.ask_for_player_choice()
+        self.p2_choice = self.ask_for_player_choice()
+        self.p1_outcome = self.outcomes[self.p1_choice][self.p2_choice]
+        print('{} for Player 1'.format(self.p1_outcome))
+
 play_game()
-        
