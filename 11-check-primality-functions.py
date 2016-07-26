@@ -11,9 +11,10 @@ def get_number(question='Please provide a number: '):
         sys.exit()
 
 def is_prime(number):
-    remainders = [number % y for y in range(2, number)]
-    for remainder in remainders:
-        if remainder == 0:
+    if number in range(2):
+        return False
+    for x in range(2, number):
+        if number % x == 0:
             return False
     return True
     
