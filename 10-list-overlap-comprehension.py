@@ -8,14 +8,15 @@ Take two lists, say for example these two:
 and write a program that returns a list that contains only the elements that are common between the lists (without duplicates). Make sure your program works on two lists of different sizes. 
 """
 
-from random import randint
+from random import sample 
 
-a = [randint(1,100) for x in range(10)]
-b = [randint(1,100) for x in range(20)]
-
+a = sample(range(30), 15)
+b = sample(range(30), 16)
 common_elements = set(a) & set(b)
+common_elements2 = set([i for i in a if i in b])
 
 print(a)
 print(b)
 print(common_elements)
+print(common_elements == common_elements2)
 
