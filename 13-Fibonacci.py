@@ -22,6 +22,26 @@ def fibonnaci_2(number):
     """Functools reduce implementation of fibonnaci numbers"""
     from functools import reduce
     return reduce(lambda x, y: x + y, range(number + 1))
+    
+# Optimal Solution via python generator
+def fib:
+    prev, curr = 0, 1
+    while True:
+        yield prev
+        prev, curr = curr, prev + curr
+
+# Or some clunky fun with classes
+class fib:
+    def __init__(self):
+        self.prev = 0
+        self.curr = 1
+
+    def __iter__(self):
+     return self
+
+    def __next__(self):
+     self.prev, self.curr = (self.curr, self.curr + self.prev)
+     return self.prev
 
 print(fibonnaci_2(10))
 print(fibonnnaci_list(10))
